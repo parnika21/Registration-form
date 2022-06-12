@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Registration Form</title>
+    <link rel="stylesheet" href="style.css" type="text/css">
+    <script>
+        function clearErrors(){
+
+errors = document.getElementsByClassName('formerror');
+for(let item of errors)
+{
+    item.innerHTML = "";
+}
+
+
+}
+function seterror(id, error){
+element = document.getElementById(id);
+element.getElementsByClassName('formerror')[0].innerHTML = error;
+
+}
+
+function validateForm(){
+var returnval = true;
+clearErrors();
+var name = document.forms['myForm']["fname"].value;
+if (name.length<5){
+    seterror("name", "*Length of name is too short");
+    returnval = false;
+}
+
+if (name.length == 0){
+    seterror("name", "*Length of name cannot be zero!");
+    returnval = false;
+}
+
+var email = document.forms['myForm']["femail"].value;
+if (email.length>15){
+    seterror("email", "*Email length is too long");
+    returnval = false;
+}
+
+var phone = document.forms['myForm']["fphone"].value;
+if (phone.length != 10){
+    seterror("phone", "*User ID should be of 5 digits!");
+    returnval = false;
+}
+
+var password = document.forms['myForm']["fpass"].value;
+if (password.length < 6){
+
+    seterror("pass", "*Password should be atleast 6 characters long!");
+    returnval = false;
+}
+
+var cpassword = document.forms['myForm']["fcpass"].value;
+if (cpassword != password){
+    seterror("cpass", "*Password and Confirm password should match!");
+    returnval = false;
+}
+if(returnval == true)
+{
+    alert('Registration is successful');
+}
+
+return returnval;
+}
+    </script>
+</head>
+
+<body class="body">
+    <div class="main">
+        <div class="register" id="name">
+    <h2>Register Here</h2>
+    <form  name="myForm" onsubmit="return validateForm()" method="post">
+        <div class="formdesign" id="name">
+            Name: <input type="text" name="fname"><b><span class="formerror"> </span></b>
+        </div>
+
+        <div class="formdesign" id="email">
+            Email: <input type="email" name="femail"><b><span class="formerror"> </span></b>
+        </div>
+
+        <div class="formdesign" id="phone">
+            User ID: <input type="phone" name="fphone"><b><span class="formerror"></span></b>
+        </div>
+
+        <div class="formdesign" id="pass">
+            Password: <input type="password" name="fpass"><b><span class="formerror"></span></b>
+        </div>
+
+        <div class="formdesign" id="cpass">
+            Confirm Password: <input type="password" name="fcpass"><b><span class="formerror"></span></b>
+        </div>
+        <div class="reset"><a href="form2.html"> Reset</a></div>
+
+        <input class="but" type="submit" value="Submit">
+    </form>
+    </div>
+    </div>
+    <div class="home"> <a href="index.html"> Home</a></div>
+    
+    <style>
+    .reset{
+    font-size: 18px;
+    color:rgb(1, 18, 41);
+    position: absolute;
+    left: 85%;
+    top: 95%;
+    display : inline-block;
+    border: 2px solid rgb(0, 204, 255);
+    background: rgb(211, 232, 233);
+   }
+    </style>
+</body>
+
+
+</html>
